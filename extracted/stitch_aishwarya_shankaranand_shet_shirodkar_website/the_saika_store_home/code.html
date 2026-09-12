@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Saika Store | Little Details. Lasting Joy.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;family=Playfair+Display:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#341007",
+                    "on-surface": "#1a1c1a",
+                    "outline": "#81756f",
+                    "surface-container-low": "#f4f3f1",
+                    "tertiary-container": "#cca730",
+                    "surface": "#faf9f6",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "background": "#faf9f6",
+                    "on-background": "#1a1c1a",
+                    "on-primary-fixed-variant": "#574238",
+                    "on-tertiary-container": "#4f3d00",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#2f312f",
+                    "tertiary-fixed": "#ffe088",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "secondary-fixed": "#ffdbd1",
+                    "surface-tint": "#705a4f",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e3e2e0",
+                    "surface-variant": "#e3e2e0",
+                    "primary-fixed-dim": "#dec1b3",
+                    "outline-variant": "#d3c3bd",
+                    "primary-container": "#3c2a21",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "surface-bright": "#faf9f6",
+                    "on-secondary-fixed-variant": "#693a2e",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#241a00",
+                    "tertiary": "#735c00",
+                    "surface-dim": "#dbdad7",
+                    "on-secondary-container": "#7b493c",
+                    "surface-container-high": "#e9e8e5",
+                    "inverse-primary": "#dec1b3",
+                    "secondary-fixed-dim": "#f9b7a5",
+                    "inverse-on-surface": "#f2f1ee",
+                    "on-primary-fixed": "#281810",
+                    "surface-container": "#efeeeb",
+                    "primary-fixed": "#fbdcce",
+                    "on-primary-container": "#aa9084",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#4f4540",
+                    "secondary-container": "#ffbcab",
+                    "primary": "#25160e",
+                    "secondary": "#845143"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "section-padding": "120px",
+                    "margin-mobile": "24px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": [
+                            "Playfair Display"
+                    ],
+                    "headline-md": [
+                            "Playfair Display"
+                    ],
+                    "label-caps": [
+                            "Montserrat"
+                    ],
+                    "display-lg": [
+                            "Playfair Display"
+                    ],
+                    "body-lg": [
+                            "Montserrat"
+                    ],
+                    "body-md": [
+                            "Montserrat"
+                    ],
+                    "headline-sm": [
+                            "Playfair Display"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg-mobile": [
+                            "40px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.15em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "64px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.03em",
+                                    "fontWeight": "300"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "500"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hairline-border {
+            border: 0.5px solid #D4C9B0;
+        }
+        .hairline-border-gold {
+            border: 1px solid #D4AF37;
+        }
+        .shadow-ambient {
+            box-shadow: 0 10px 40px rgba(60, 42, 33, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md dark:bg-surface/90 border-b border-outline-variant/30 transition-all duration-300" id="main-nav">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
+<a class="font-display-lg text-headline-sm tracking-widest text-primary dark:text-primary-fixed shrink-0" href="#">SAIKA</a>
+<!-- Desktop Nav -->
+<ul class="hidden md:flex space-x-8">
+<li><a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1" href="#">Home</a></li>
+<li><a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Shop</a></li>
+<li><a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">About</a></li>
+<li><a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Contact</a></li>
+</ul>
+<div class="flex space-x-4">
+<button aria-label="search" class="hover:opacity-70 transition-opacity duration-300 text-primary dark:text-on-primary-fixed">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="shopping_bag" class="hover:opacity-70 transition-opacity duration-300 text-primary dark:text-on-primary-fixed">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-24 bg-surface-container-low overflow-hidden">
+<div class="absolute inset-0 parallax opacity-40 mix-blend-multiply" data-alt="A softly lit, minimalist room with muted earth tones, featuring a beautifully curated arrangement of elegant ceramic vases, dried pampas grass, and subtle warm sunlight casting gentle shadows. The aesthetic is modern, calm, and subtly luxurious, utilizing a palette of terracotta rose and sage beige. High-end editorial photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZPw9JWTLfPvf-Hstsue9O6sOMpq6mLV_gUBoNhYidZN21z55D7nQFDr14abtNbDank1dpgCMz_dm8FVj4s3mffc6yPdEXtSxv--MnJ_XepmS3QwxjqochB4NjAt_PbxAQM8NbRGP7OENq2OIsVJIlJ9uSyYfs9p4gVp3lgpMR2nZEZm7IYE19QPj2D5jad6iM9aKqJOzdevAY2uJdWReeP6N71XkJ2TyGH1LuigEW4SGCOmvB7B8jwxI5OzlFbs17hkaUQ5R7Ig')"></div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-8 md:col-start-3 text-center fade-in">
+<span class="inline-block px-4 py-2 bg-[#D4C9B0] text-primary-container font-label-caps text-label-caps mb-8 tracking-widest uppercase">The Saika Store</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-container mb-6 leading-tight">
+                    Little Details.<br/>Lasting Joy.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+                    A curated destination for aesthetic lifestyle products, thoughtful gifts, and elegant essentials you’ll love to own and share.
+                </p>
+<a class="inline-flex items-center justify-center px-8 py-4 bg-primary-container text-on-primary font-label-caps text-label-caps hover:bg-primary transition-colors duration-300 shadow-ambient uppercase tracking-widest" href="#collections">
+                    Explore What’s Coming
+                </a>
+</div>
+</div>
+</section>
+<!-- Featured Collections (Bento Grid Style) -->
+<section class="py-section-padding px-margin-mobile md:px-margin-desktop bg-surface" id="collections">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16 fade-in">
+<h2 class="font-headline-md text-headline-md text-primary-container mb-4">Curated Collections</h2>
+<div class="w-16 h-px bg-[#D4AF37] mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-unit md:gap-4 h-auto md:h-[800px]">
+<!-- Lifestyle & Home -->
+<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden fade-in bg-surface-container shadow-ambient">
+<img alt="Lifestyle &amp; Home" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A highly aesthetic, minimalist composition of modern home decor items. A sleek, matte ceramic vase in sage beige, a textured linen throw pillow, and a softly glowing soy candle on a raw wooden tray. The lighting is diffused and natural, highlighting the tactile qualities of the materials. Editorial minimalism, luxurious and calm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqiurC_ycepmJbSK9HngamxMEthuFP2SQbVpiKY3qSOIz_YKGAho4Z1JeJrjcio_-Xom-nNaCJx3f9liJmuNdX50rWNNw0F0yB2VYVyxfeaWHrJmzXoWJV7A8667YGSLjcQLPbzprvfF7C42TLeXKPjMPDCHotXQEjdv-Xqq4ehco6r9vPmfKhBRGYAK4MkwTSkCFlGjjw0mww_bNROq_XXFR3KM5XaDT16PGHU-ZdYwKi_QFJzYTSSJzH1ZSjpNcjU3qxcN5Qcg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="inline-block px-3 py-1 bg-surface/90 text-primary-container font-label-caps text-[10px] uppercase tracking-widest mb-3">Curated</span>
+<h3 class="font-headline-md text-headline-md text-on-primary mb-2">Lifestyle &amp; Home</h3>
+<a class="inline-flex items-center text-on-primary font-label-caps text-label-caps hover:opacity-70 transition-opacity" href="#">
+                            Shop Collection <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Fashion Accessories -->
+<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden fade-in bg-surface-container shadow-ambient" style="transition-delay: 100ms;">
+<img alt="Fashion Accessories" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up, premium shot of elegant fashion accessories arranged on a subtle textured stone surface. Minimalist gold jewelry, a structured leather cardholder in a deep mocha tone, and a silk scarf with subtle geometric patterns. Soft, directional lighting creating elegant shadows. Sophisticated, modern classicism aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKcRquJUpU8YYEdNTmrBKdPUzZ-8ucKfGnWbVruqBliV9tq85Mo96WB6TGG_R_K2Em6J9X0YOtZezI9_PPzv_1XBz0u2hK_ciTIf-a0lJuqsOC_qc3OYRM-Oiod9KMaiQ-YHSZzw27Qa-_OSjI1JkjUI6b5jMvHpyeJ2GAQawqsGeS3T3_ikAOE4CaX_FGN68k9D9x7aV00sobIjL8KkMgkDLa9ChqS8eEA682bn3xVjorn_6dIeyAPwtBvXLhHJl4t2KItPvTMA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<h3 class="font-headline-sm text-headline-sm text-on-primary mb-2">Fashion Accessories</h3>
+<a class="inline-flex items-center text-on-primary font-label-caps text-label-caps hover:opacity-70 transition-opacity" href="#">
+                            Discover <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Premium Crockery -->
+<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden fade-in bg-surface-container shadow-ambient" style="transition-delay: 200ms;">
+<img alt="Premium Crockery" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An artisanal table setting featuring premium, handmade crockery. Matte finish plates in soft terracotta and stone gray, paired with brushed gold cutlery and delicate ribbed glassware. The setting is clean, asymmetrical, and bathed in soft, moody natural light. Focus on the raw, tactile texture of the ceramics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU2Xhn55KS9xSTDXuUwhJJc5xRFdF4c8oq6PAxJ4EmvMOn47XLE2vA238DejPYl8SG_AnWCzNo0xiNin21u8rACpilufGVFiF3weYNdBc19jBbR--FWZaG6vfPo-Wn2I-EMALMlw17gRiDaHFbCVnvKFmcKRdJK3ghGu844sobO-p6bL_VWgyDWnDV1N4vobfU21OVrH44kHue4Jkqj2TcHaxKuTCAQWTxUMV8Mvj_UjDfx8W2HAfojEez2acj7Y3vugl7im8M2Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<h3 class="font-headline-sm text-headline-sm text-on-primary mb-2">Premium Crockery</h3>
+<a class="inline-flex items-center text-on-primary font-label-caps text-label-caps hover:opacity-70 transition-opacity" href="#">
+                            View Range <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Story -->
+<section class="py-section-padding px-margin-mobile md:px-margin-desktop bg-[#FAF9F6] relative border-t hairline-border">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 fade-in">
+<img alt="Brand Story Texture" class="w-full h-auto aspect-[3/4] object-cover shadow-ambient" data-alt="An abstract, highly textured macro photograph of raw linen and smooth polished stone overlapping in a serene, harmonious composition. The colors are strictly sage beige, soft warm whites, and subtle hints of dark mocha. The image conveys a sense of intentionality, calm, and high-end tactile luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE9dyteFWOWPtrl6FjM6WjNgzKayter-f-3h5y0NLaxUvCr69jfdYHqwVd7xC4sU_0uEf5g4wUjTP6-dfwv8-_F9ZXpqODrMbGupKKkUNgz0-1QU3zw4z-cCRajomye-IGW75r5lIOMgCWgtco66rHiZtbVDznlHwXraGBOoR2uCFc2C-cTfEyRPfpRWKuyWsPXmT8bm3Camm62dSjxIXKwAoFJF7podYrkFn6URTf0gOER5PHNRtIFNl3a8AMWY1B1EJHEy2t2Q"/>
+</div>
+<div class="md:col-span-6 md:col-start-7 fade-in" style="transition-delay: 200ms;">
+<h2 class="font-headline-md text-headline-md text-primary-container mb-6">Our Philosophy</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
+                    The Saika Store is dedicated to curating elegant, high-quality lifestyle products that elevate the everyday. We believe in the power of "Quiet Luxury"—where substance, tactility, and intentionality take precedence over the superfluous.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 leading-relaxed">
+                    Every piece in our collection is chosen with a discerning eye for design and craftsmanship, ensuring that the objects you surround yourself with are not just functional, but genuinely spark joy.
+                </p>
+<a class="inline-flex items-center px-6 py-3 bg-transparent text-primary-container hairline-border-gold font-label-caps text-label-caps hover:bg-[#D4AF37]/10 transition-colors duration-300 uppercase tracking-widest" href="#">
+                    Read Our Story
+                </a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-high text-secondary dark:text-secondary-fixed font-body-md text-body-md w-full py-section-padding border-t border-outline-variant/50">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-4 mb-8 md:mb-0">
+<a class="font-display-lg text-headline-md text-primary dark:text-primary-fixed block mb-6 tracking-widest" href="#">SAIKA</a>
+<p class="text-on-surface-variant text-sm max-w-xs">© 2024 SAIKA STORE. THE LITTLE THINGS THAT SPARK JOY.</p>
+</div>
+<div class="md:col-span-2 md:col-start-7 mb-8 md:mb-0">
+<h4 class="font-label-caps text-label-caps text-primary mb-4 uppercase tracking-widest">Shop</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Collections</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">New Arrivals</a></li>
+</ul>
+</div>
+<div class="md:col-span-2 mb-8 md:mb-0">
+<h4 class="font-label-caps text-label-caps text-primary mb-4 uppercase tracking-widest">About</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Our Story</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps text-primary mb-4 uppercase tracking-widest">Support</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Shipping &amp; Returns</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Simple scroll effect for navbar
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-ambient');
+                nav.classList.replace('py-6', 'py-4');
+            } else {
+                nav.classList.remove('shadow-ambient');
+                nav.classList.replace('py-4', 'py-6');
+            }
+        });
+    </script>
+</body></html>

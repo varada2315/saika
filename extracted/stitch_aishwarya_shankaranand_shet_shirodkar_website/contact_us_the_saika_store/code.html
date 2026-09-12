@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - The Saika Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;family=Playfair+Display:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#341007",
+                        "on-surface": "#1a1c1a",
+                        "outline": "#81756f",
+                        "surface-container-low": "#f4f3f1",
+                        "tertiary-container": "#cca730",
+                        "surface": "#faf9f6",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf9f6",
+                        "on-background": "#1a1c1a",
+                        "on-primary-fixed-variant": "#574238",
+                        "on-tertiary-container": "#4f3d00",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2f312f",
+                        "tertiary-fixed": "#ffe088",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "secondary-fixed": "#ffdbd1",
+                        "surface-tint": "#705a4f",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-variant": "#e3e2e0",
+                        "primary-fixed-dim": "#dec1b3",
+                        "outline-variant": "#d3c3bd",
+                        "primary-container": "#3c2a21",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-bright": "#faf9f6",
+                        "on-secondary-fixed-variant": "#693a2e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary": "#735c00",
+                        "surface-dim": "#dbdad7",
+                        "on-secondary-container": "#7b493c",
+                        "surface-container-high": "#e9e8e5",
+                        "inverse-primary": "#dec1b3",
+                        "secondary-fixed-dim": "#f9b7a5",
+                        "inverse-on-surface": "#f2f1ee",
+                        "on-primary-fixed": "#281810",
+                        "surface-container": "#efeeeb",
+                        "primary-fixed": "#fbdcce",
+                        "on-primary-container": "#aa9084",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#4f4540",
+                        "secondary-container": "#ffbcab",
+                        "primary": "#25160e",
+                        "secondary": "#845143"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "section-padding": "120px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "label-caps": ["Montserrat"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "headline-sm": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.03em", "fontWeight": "300" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle fade-in animation for layout elements */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 flat no shadows">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
+<!-- Brand -->
+<a class="font-display-lg text-headline-sm tracking-widest text-primary hover:opacity-70 transition-opacity duration-300 uppercase" href="#">
+                SAIKA
+            </a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps hover:opacity-70" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps hover:opacity-70" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps hover:opacity-70" href="#">About</a>
+<a class="text-primary border-b border-primary pb-1 font-label-caps text-label-caps" href="#">Contact</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-unit*3">
+<button class="text-primary hover:opacity-70 transition-opacity duration-300 Active: scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-primary hover:opacity-70 transition-opacity duration-300 Active: scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-section-padding pb-section-padding px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-x-gutter lg:gap-y-0 relative">
+<!-- Left Column: Contact Details & Vibe -->
+<div class="lg:col-span-5 lg:col-start-2 fade-in-up">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-gutter">Get in Touch</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-section-padding max-w-md">
+                    We invite you to connect with us. Whether you have an inquiry about a piece, require assistance with an order, or simply wish to say hello, we are here to assist you.
+                </p>
+<div class="space-y-gutter">
+<!-- Email -->
+<div class="flex items-start gap-4 group">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-300 mt-1" data-icon="mail">mail</span>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-1">Email</h3>
+<a class="font-body-lg text-body-lg text-primary hover:text-tertiary-container transition-colors duration-300" href="mailto:Thesaikastore@gmail.com">Thesaikastore@gmail.com</a>
+</div>
+</div>
+<!-- Phone -->
+<div class="flex items-start gap-4 group">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-300 mt-1" data-icon="phone">phone</span>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-1">Phone</h3>
+<a class="font-body-lg text-body-lg text-primary hover:text-tertiary-container transition-colors duration-300" href="tel:8208220160">8208220160</a>
+</div>
+</div>
+<!-- Instagram -->
+<div class="flex items-start gap-4 group">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-300 mt-1" data-icon="camera_alt">camera_alt</span>
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-1">Instagram</h3>
+<a class="font-body-lg text-body-lg text-primary hover:text-tertiary-container transition-colors duration-300" href="#">@The_saika_store</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Form Container (The 'Sage Beige' Container) -->
+<div class="lg:col-span-5 lg:col-start-8 mt-margin-desktop lg:mt-0 fade-in-up delay-200">
+<div class="bg-[#D4C9B0]/20 p-margin-desktop relative">
+<!-- Decorative subtle border -->
+<div class="absolute inset-0 border border-[#D4C9B0] pointer-events-none"></div>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-margin-desktop">Send a Message</h2>
+<form class="space-y-8">
+<!-- Name Input -->
+<div class="relative group">
+<input class="peer w-full bg-transparent border-0 border-b border-[#D4C9B0] focus:border-primary-container focus:ring-0 px-0 py-2 font-body-md text-primary placeholder-transparent transition-colors duration-300" id="name" name="name" placeholder="Name" type="text"/>
+<label class="absolute left-0 -top-4 font-label-caps text-label-caps text-outline transition-all duration-300 peer-placeholder-shown:text-body-md peer-placeholder-shown:text-outline-variant peer-placeholder-shown:top-2 peer-placeholder-shown:font-body-md peer-focus:-top-4 peer-focus:text-label-caps peer-focus:text-primary-container peer-focus:font-label-caps" for="name">Name</label>
+</div>
+<!-- Email Input -->
+<div class="relative group">
+<input class="peer w-full bg-transparent border-0 border-b border-[#D4C9B0] focus:border-primary-container focus:ring-0 px-0 py-2 font-body-md text-primary placeholder-transparent transition-colors duration-300" id="email" name="email" placeholder="Email" type="email"/>
+<label class="absolute left-0 -top-4 font-label-caps text-label-caps text-outline transition-all duration-300 peer-placeholder-shown:text-body-md peer-placeholder-shown:text-outline-variant peer-placeholder-shown:top-2 peer-placeholder-shown:font-body-md peer-focus:-top-4 peer-focus:text-label-caps peer-focus:text-primary-container peer-focus:font-label-caps" for="email">Email Address</label>
+</div>
+<!-- Subject Input -->
+<div class="relative group">
+<input class="peer w-full bg-transparent border-0 border-b border-[#D4C9B0] focus:border-primary-container focus:ring-0 px-0 py-2 font-body-md text-primary placeholder-transparent transition-colors duration-300" id="subject" name="subject" placeholder="Subject" type="text"/>
+<label class="absolute left-0 -top-4 font-label-caps text-label-caps text-outline transition-all duration-300 peer-placeholder-shown:text-body-md peer-placeholder-shown:text-outline-variant peer-placeholder-shown:top-2 peer-placeholder-shown:font-body-md peer-focus:-top-4 peer-focus:text-label-caps peer-focus:text-primary-container peer-focus:font-label-caps" for="subject">Subject Inquiry</label>
+</div>
+<!-- Message Input -->
+<div class="relative group pt-4">
+<textarea class="peer w-full bg-transparent border-0 border-b border-[#D4C9B0] focus:border-primary-container focus:ring-0 px-0 py-2 font-body-md text-primary placeholder-transparent transition-colors duration-300 resize-none" id="message" name="message" placeholder="Message" rows="4"></textarea>
+<label class="absolute left-0 top-0 font-label-caps text-label-caps text-outline transition-all duration-300 peer-placeholder-shown:text-body-md peer-placeholder-shown:text-outline-variant peer-placeholder-shown:top-6 peer-placeholder-shown:font-body-md peer-focus:top-0 peer-focus:text-label-caps peer-focus:text-primary-container peer-focus:font-label-caps" for="message">Your Message</label>
+</div>
+<!-- Submit Button -->
+<div class="pt-4">
+<button class="bg-primary-container text-on-primary w-full py-4 font-label-caps text-label-caps hover:bg-primary transition-colors duration-300 flex items-center justify-center gap-2 group" type="submit">
+                                SUBMIT INQUIRY
+                                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform duration-300" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Image Banner Below -->
+<div class="mt-section-padding fade-in-up delay-300 relative h-64 md:h-96 w-full max-w-5xl mx-auto overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transform hover:scale-105 transition-transform duration-[20s] ease-out" data-alt="A meticulously styled still life featuring a minimal ceramic vase on a smooth stone surface, bathed in soft, diffused natural light that casts delicate shadows. The scene embodies a modern luxury aesthetic with a palette of soft sage greens, warm beige, and deep mocha accents, creating a calm and sophisticated mood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxbSWKPmOPJhcoTw7tQEQU9xR43rijzMnViZnvjJ8vs8zSaO7_vzxMOwcAERAJYFjJmmoBND9jHuG29Y8gS2KAq_luN2UXabYmP6pHKnrPYxj_V7egbU6MrkjA_vOyDy9E5Z29f0CETB_OCYg3BiwjzKXpXbI2mrX3ZGK8nn2ysL1juRWRkE4pxHuy_zYWywuUZpLutSYPAEjiSHp-8SoCozrP-hTv2FAetq4EsPYFjh2Re9RFWOSUTdoMXjz9aidMdy6fFyXyCA')"></div>
+<!-- Overlay for text legibility if needed, though kept minimal here -->
+<div class="absolute inset-0 bg-primary-container/10 flex items-center justify-center pointer-events-none">
+<span class="font-display-lg text-headline-sm text-on-primary tracking-widest uppercase opacity-80 mix-blend-overlay">The Little Things</span>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-padding border-t border-outline-variant/50 bg-surface-container-lowest flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto items-center">
+<div class="md:col-span-4 flex flex-col gap-4">
+<span class="font-display-lg text-headline-md text-primary uppercase">SAIKA</span>
+<span class="font-body-md text-body-md text-secondary text-sm opacity-80">
+                    © 2024 SAIKA STORE. THE LITTLE THINGS THAT SPARK JOY.
+                </span>
+</div>
+<div class="md:col-span-8 flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Collections</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Our Story</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Shipping &amp; Returns</a>
+<a class="font-body-md text-body-md text-primary font-semibold hover:text-primary transition-colors duration-300" href="#">Contact</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</body></html>
