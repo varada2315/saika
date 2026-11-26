@@ -1,40 +1,9 @@
 import React, { useState } from 'react';
+import { LOOKBOOK_PRODUCTS } from '../data/products';
+import { formatCurrency } from '../utils/currency';
 
-export default function ShopTheLook({ onAddToCart, showToast }) {
+export default function ShopTheLook({ onAddToCart, onSelectProduct }) {
   const [activePin, setActivePin] = useState(null);
-
-  const hotspots = [
-    {
-      id: 1,
-      name: 'Stoneware Ceramic Vase',
-      price: 120,
-      image: '/images/shop_artisan_vase.png',
-      x: '53%',
-      y: '58%',
-      subtitle: 'Sage beige matte finish',
-      rating: 4.9,
-    },
-    {
-      id: 2,
-      name: 'Hand-poured Soy Candle',
-      price: 45,
-      image: '/images/collection_lifestyle.png',
-      x: '71%',
-      y: '70%',
-      subtitle: 'Amber & Santal fragrance',
-      rating: 5.0,
-    },
-    {
-      id: 3,
-      name: 'Washed Linen Cushion',
-      price: 75,
-      image: '/images/shop_linen_set.png',
-      x: '25%',
-      y: '62%',
-      subtitle: 'Fringed edge natural linen',
-      rating: 4.8,
-    },
-  ];
 
   return (
     <section className="py-section-padding px-margin-mobile md:px-margin-desktop bg-surface-container-low border-t hairline-border">
@@ -57,10 +26,10 @@ export default function ShopTheLook({ onAddToCart, showToast }) {
           />
 
           {/* Hotspot Pins */}
-          {hotspots.map((pin) => (
+          {LOOKBOOK_PRODUCTS.map((pin) => (
             <div
               key={pin.id}
-              style={{ left: pin.x, top: pin.y }}
+              style={{ left: pin.hotspot.x, top: pin.hotspot.y }}
               className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
             >
               {/* Pulse animation ring */}
@@ -79,32 +48,36 @@ export default function ShopTheLook({ onAddToCart, showToast }) {
               {/* Popover Card */}
               {activePin === pin.id && (
                 <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-64 bg-surface/95 backdrop-blur-md p-4 shadow-2xl border border-[#D4AF37] z-30 animate-fadeIn text-left">
-                  <div className="flex gap-3 items-center mb-3">
+                  <div
+                    onClick={() => onSelectProduct?.(pin)}
+                    className="flex gap-3 items-center mb-3 cursor-pointer group/card"
+                  >
                     <img src={pin.image} alt={pin.name} className="w-14 h-14 object-cover" />
                     <div>
-                      <h4 className="font-headline-sm text-sm text-primary leading-tight">{pin.name}</h4>
+                      <h4 className="font-headline-sm text-sm text-primary leading-tight group-hover/card:text-secondary transition-colors">
+                        {pin.name}
+                      </h4>
                       <p className="text-[11px] text-on-surface-variant font-body-md">{pin.subtitle}</p>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="font-label-caps text-xs text-secondary font-bold">${pin.price}</span>
+                        <span className="font-label-caps text-xs text-secondary font-bold">{formatCurrency(pin.price)}</span>
                         <span className="text-[10px] text-tertiary">★ {pin.rating}</span>
                       </div>
                     </div>
                   </div>
-                  <button
-                    onClick={() => {
-                      onAddToCart({
-                        id: pin.id + 10,
-                        name: pin.name,
-                        subtitle: pin.subtitle,
-                        price: pin.price,
-                        image: pin.image,
-                      });
-                      showToast(`${pin.name} added to your bag`);
-                    }}
-                    className="w-full bg-primary-container text-on-primary py-2 font-label-caps text-[10px] uppercase tracking-widest hover:bg-primary transition-colors flex items-center justify-center gap-1"
-                  >
-                    Quick Add <span className="material-symbols-outlined text-xs">shopping_bag</span>
-                  </button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => onSelectProduct?.(pin)}
+                      className="border border-primary-container text-primary-container py-2 font-label-caps text-[10px] uppercase tracking-widest hover:bg-surface-container transition-colors"
+                    >
+                      View Details
+                    </button>
+                    <button
+                      onClick={() => onAddToCart(pin)}
+                      className="bg-primary-container text-on-primary py-2 font-label-caps text-[10px] uppercase tracking-widest hover:bg-primary transition-colors flex items-center justify-center gap-1"
+                    >
+                      Quick Add <span className="material-symbols-outlined text-xs">shopping_bag</span>
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { formatCurrency } from '../utils/currency';
 
-export default function QuickAddModal({ product, onClose, onAddToCart }) {
-  if (!product) return null;
+export default function QuickAddModal({ product, onClose, onAddToCart, onSelectProduct }) {
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [product?.id]);
+
+  if (!product) return null;
 
   const handleAdd = () => {
     onAddToCart(product, quantity);
@@ -37,14 +43,14 @@ export default function QuickAddModal({ product, onClose, onAddToCart }) {
               </span>
               <h2 className="font-headline-md text-2xl text-primary mb-2">{product.name}</h2>
               <p className="font-body-md text-sm text-on-surface-variant mb-4">{product.subtitle}</p>
-              <span className="font-label-caps text-lg text-secondary block mb-6">${product.price}</span>
+              <span className="font-label-caps text-lg text-secondary block mb-6">{formatCurrency(product.price)}</span>
               <p className="font-body-md text-xs text-on-surface-variant leading-relaxed mb-6">
-                Handcrafted with raw tactility and timeless aesthetic. Part of our curated quiet luxury collection.
+                {product.description || 'Handcrafted with raw tactility and timeless aesthetic. Part of our curated quiet luxury collection.'}
               </p>
             </div>
 
-            <div>
-              <div className="flex items-center gap-4 mb-6">
+            <div className="space-y-3">
+              <div className="flex items-center gap-4 mb-3">
                 <span className="font-label-caps text-xs text-outline uppercase tracking-wider">Quantity</span>
                 <div className="flex items-center border border-outline-variant/50">
                   <button
@@ -67,8 +73,20 @@ export default function QuickAddModal({ product, onClose, onAddToCart }) {
                 onClick={handleAdd}
                 className="w-full bg-primary-container text-on-primary py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors shadow-ambient"
               >
-                Add to Bag — ${(product.price * quantity).toFixed(2)}
+                Add to Bag — {formatCurrency(product.price * quantity, { decimals: true })}
               </button>
+
+              {onSelectProduct && (
+                <button
+                  onClick={() => {
+                    onClose();
+                    onSelectProduct(product);
+                  }}
+                  className="w-full py-2.5 text-center font-label-caps text-[11px] text-primary hover:text-secondary uppercase tracking-widest underline underline-offset-4 transition-colors"
+                >
+                  View Full Product Details &amp; Gallery →
+                </button>
+              )}
             </div>
           </div>
         </div>

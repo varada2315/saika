@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,74 +11,45 @@ import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import ProductPage from './pages/ProductPage';
+import {
+  ALL_PRODUCTS,
+  CATALOG_PRODUCTS,
+  getProductByIdOrSlug,
+} from './data/products';
 
-const PRODUCTS = [
-  {
-    id: 1,
-    name: 'The Artisan Vase',
-    subtitle: 'Hand-thrown stoneware ceramic',
-    price: 120,
-    category: 'Lifestyle',
-    image: '/images/shop_artisan_vase.png',
-    detailImage: '/images/shop_artisan_vase_detail.png',
-  },
-  {
-    id: 2,
-    name: 'Essential Chain',
-    subtitle: '14k Solid Gold minimal necklace',
-    price: 350,
-    category: 'Accessories',
-    image: '/images/shop_essential_chain.png',
-    detailImage: '/images/shop_essential_chain.png',
-  },
-  {
-    id: 3,
-    name: 'Washed Linen Set',
-    subtitle: 'Set of 4 natural linen napkins',
-    price: 65,
-    category: 'Lifestyle',
-    image: '/images/shop_linen_set.png',
-    detailImage: '/images/brand_philosophy.png',
-  },
-  {
-    id: 4,
-    name: 'The Lounge Chair',
-    subtitle: 'Oak & Boucle upholstered armchair',
-    price: 1200,
-    category: 'Home Accents',
-    image: '/images/shop_lounge_chair.png',
-    detailImage: '/images/shop_lounge_chair_detail.png',
-  },
-  {
-    id: 5,
-    name: 'Handcrafted Crockery Set',
-    subtitle: 'Matte terracotta & stone gray',
-    price: 180,
-    category: 'Crockery',
-    image: '/images/collection_crockery.png',
-    detailImage: '/images/collection_crockery.png',
-  },
-  {
-    id: 6,
-    name: 'Mocha Leather Cardholder',
-    subtitle: 'Full-grain Italian leather',
-    price: 95,
-    category: 'Accessories',
-    image: '/images/collection_accessories.png',
-    detailImage: '/images/collection_accessories.png',
-  },
-];
+function parseHashRoute() {
+  if (typeof window === 'undefined') return { page: 'home', productSlug: null };
+  const rawHash = window.location.hash.replace(/^#\/?/, '').trim();
+  if (!rawHash) return { page: 'home', productSlug: null };
+
+  if (rawHash.startsWith('product/')) {
+    const slug = decodeURIComponent(rawHash.slice('product/'.length));
+    const matched = getProductByIdOrSlug(slug);
+    if (matched) return { page: 'product', productSlug: matched.slug };
+    return { page: 'shop', productSlug: null };
+  }
+
+  if (['home', 'shop', 'about', 'contact'].includes(rawHash)) {
+    return { page: rawHash, productSlug: null };
+  }
+  return { page: 'home', productSlug: null };
+}
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const initialRoute = parseHashRoute();
+  const [currentPage, setCurrentPage] = useState(initialRoute.page);
+  const [selectedProductSlug, setSelectedProductSlug] = useState(initialRoute.productSlug);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [cart, setCart] = useState([
     {
-      id: 1,
-      name: 'The Artisan Vase',
-      subtitle: 'Hand-thrown stoneware ceramic',
-      price: 120,
+      id: CATALOG_PRODUCTS[0].id,
+      slug: CATALOG_PRODUCTS[0].slug,
+      name: CATALOG_PRODUCTS[0].name,
+      subtitle: CATALOG_PRODUCTS[0].subtitle,
+      price: CATALOG_PRODUCTS[0].price,
       quantity: 1,
-      image: '/images/shop_artisan_vase.png',
+      image: CATALOG_PRODUCTS[0].image,
     },
   ]);
   const [wishlist, setWishlist] = useState([]);
@@ -87,6 +58,47 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [quickAddProduct, setQuickAddProduct] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const next = parseHashRoute();
+      setCurrentPage(next.page);
+      setSelectedProductSlug(next.productSlug);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateTo = (pageId, category = 'All') => {
+    setSelectedCategory(pageId === 'shop' ? category : 'All');
+    setSelectedProductSlug(null);
+    setCurrentPage(pageId);
+    const nextHash = pageId === 'home' ? '#/' : `#/${pageId}`;
+    if (window.location.hash !== nextHash) {
+      window.location.hash = nextHash;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openProductPage = (productOrId) => {
+    const targetKey =
+      typeof productOrId === 'object' && productOrId !== null
+        ? productOrId.slug ?? productOrId.id
+        : productOrId;
+    const resolved = getProductByIdOrSlug(targetKey);
+    if (!resolved) return;
+
+    setSelectedProductSlug(resolved.slug);
+    setCurrentPage('product');
+    const nextHash = `#/product/${resolved.slug}`;
+    if (window.location.hash !== nextHash) {
+      window.location.hash = nextHash;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const activeProduct = getProductByIdOrSlug(selectedProductSlug);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const wishlistCount = wishlist.length;
@@ -108,6 +120,7 @@ export default function App() {
         ...prev,
         {
           id: product.id,
+          slug: product.slug,
           name: product.name,
           subtitle: product.subtitle,
           price: product.price,
@@ -152,16 +165,11 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-surface text-on-surface">
       {/* Top Header Wrapper containing Marquee Bar & Navbar stacked */}
       <header className="fixed top-0 w-full z-40 flex flex-col">
-        <AnnouncementBar
-          onCopyCode={(code) => {
-            navigator.clipboard.writeText(code);
-            showToast(`Promo code ${code} copied to clipboard!`);
-          }}
-        />
+        <AnnouncementBar />
 
         <Navbar
           currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          setCurrentPage={navigateTo}
           cartCount={cartCount}
           wishlistCount={wishlistCount}
           openCart={() => setIsCartOpen(true)}
@@ -173,10 +181,11 @@ export default function App() {
       <div className="flex-grow pt-24 md:pt-28">
         {currentPage === 'home' && (
           <HomePage
-            setCurrentPage={setCurrentPage}
-            products={PRODUCTS}
+            setCurrentPage={navigateTo}
+            products={CATALOG_PRODUCTS}
             onQuickAdd={(p) => setQuickAddProduct(p)}
             onAddToCart={handleAddToCart}
+            onSelectProduct={openProductPage}
             toggleWishlist={handleToggleWishlist}
             wishlist={wishlist}
             showToast={showToast}
@@ -184,20 +193,34 @@ export default function App() {
         )}
         {currentPage === 'shop' && (
           <ShopPage
-            products={PRODUCTS}
+            products={CATALOG_PRODUCTS}
+            initialCategory={selectedCategory}
             onQuickAdd={(p) => setQuickAddProduct(p)}
+            onSelectProduct={openProductPage}
             toggleWishlist={handleToggleWishlist}
             wishlist={wishlist}
             showToast={showToast}
           />
         )}
+        {currentPage === 'product' && activeProduct && (
+          <ProductPage
+            product={activeProduct}
+            allProducts={ALL_PRODUCTS}
+            onAddToCart={handleAddToCart}
+            toggleWishlist={handleToggleWishlist}
+            wishlist={wishlist}
+            onSelectProduct={openProductPage}
+            onNavigate={navigateTo}
+            showToast={showToast}
+          />
+        )}
         {currentPage === 'about' && (
-          <AboutPage setCurrentPage={setCurrentPage} />
+          <AboutPage setCurrentPage={navigateTo} />
         )}
         {currentPage === 'contact' && <ContactPage />}
       </div>
 
-      <Footer setCurrentPage={setCurrentPage} />
+      <Footer setCurrentPage={navigateTo} />
 
       <CartDrawer
         isOpen={isCartOpen}
@@ -205,7 +228,8 @@ export default function App() {
         cart={cart}
         updateQuantity={handleUpdateQuantity}
         removeItem={handleRemoveItem}
-        setCurrentPage={setCurrentPage}
+        setCurrentPage={navigateTo}
+        onSelectProduct={openProductPage}
         showToast={showToast}
       />
 
@@ -215,20 +239,22 @@ export default function App() {
         wishlist={wishlist}
         onAddToCart={handleAddToCart}
         removeFromWishlist={handleRemoveFromWishlist}
-        setCurrentPage={setCurrentPage}
+        setCurrentPage={navigateTo}
+        onSelectProduct={openProductPage}
       />
 
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        products={PRODUCTS}
-        onSelectProduct={(p) => setQuickAddProduct(p)}
+        products={ALL_PRODUCTS}
+        onSelectProduct={openProductPage}
       />
 
       <QuickAddModal
         product={quickAddProduct}
         onClose={() => setQuickAddProduct(null)}
         onAddToCart={handleAddToCart}
+        onSelectProduct={openProductPage}
       />
 
       <Toast message={toastMessage} onClose={() => setToastMessage(null)} />

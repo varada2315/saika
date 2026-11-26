@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { formatCurrency } from '../utils/currency';
 
-export default function ShopPage({ products, onQuickAdd, toggleWishlist, wishlist, showToast }) {
-  const [activeCategory, setActiveCategory] = useState('All');
+export default function ShopPage({
+  products,
+  initialCategory = 'All',
+  onQuickAdd,
+  onSelectProduct,
+  toggleWishlist,
+  wishlist,
+  showToast,
+}) {
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [sortBy, setSortBy] = useState('featured');
   const [hoveredId, setHoveredId] = useState(null);
+
+  useEffect(() => {
+    setActiveCategory(initialCategory || 'All');
+  }, [initialCategory]);
 
   const categories = ['All', 'Lifestyle', 'Accessories', 'Crockery', 'Home Accents'];
 
@@ -94,6 +107,7 @@ export default function ShopPage({ products, onQuickAdd, toggleWishlist, wishlis
             return (
               <article
                 key={product.id}
+                onClick={() => onSelectProduct?.(product)}
                 onMouseEnter={() => setHoveredId(product.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 className={`${colSpan} group cursor-pointer relative flex flex-col justify-between p-4 bg-surface-container-lowest border border-outline-variant/30 hover:shadow-2xl transition-all duration-300`}
@@ -126,7 +140,10 @@ export default function ShopPage({ products, onQuickAdd, toggleWishlist, wishlis
 
                   <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button
-                      onClick={() => onQuickAdd(product)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onQuickAdd(product);
+                      }}
                       className="bg-primary-container text-on-primary font-label-caps text-label-caps px-8 py-4 tracking-widest uppercase hover:bg-primary transition-colors shadow-lg"
                     >
                       Quick Add
@@ -145,7 +162,7 @@ export default function ShopPage({ products, onQuickAdd, toggleWishlist, wishlis
                     <p className="font-body-md text-body-md text-on-surface-variant">{product.subtitle}</p>
                   </div>
                   <span className="font-label-caps text-label-caps text-secondary font-bold tracking-wider text-base">
-                    ${product.price}
+                    {formatCurrency(product.price)}
                   </span>
                 </div>
               </article>

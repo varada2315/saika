@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import {
+  FREE_SHIPPING_THRESHOLD,
+  GIFT_WRAP_FEE,
+  formatCurrency,
+} from '../utils/currency';
 
 export default function CartDrawer({
   isOpen,
@@ -7,6 +12,7 @@ export default function CartDrawer({
   updateQuantity,
   removeItem,
   setCurrentPage,
+  onSelectProduct,
   showToast,
 }) {
   const [promoCode, setPromoCode] = useState('');
@@ -17,12 +23,11 @@ export default function CartDrawer({
 
   const rawSubtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discountAmount = (rawSubtotal * discountPercent) / 100;
-  const giftWrapFee = giftWrap ? 5 : 0;
+  const giftWrapFee = giftWrap ? GIFT_WRAP_FEE : 0;
   const subtotal = Math.max(0, rawSubtotal - discountAmount + giftWrapFee);
 
-  const freeShippingThreshold = 150;
-  const progressPercent = Math.min(100, (rawSubtotal / freeShippingThreshold) * 100);
-  const amountNeededForFreeShipping = freeShippingThreshold - rawSubtotal;
+  const progressPercent = Math.min(100, (rawSubtotal / FREE_SHIPPING_THRESHOLD) * 100);
+  const amountNeededForFreeShipping = FREE_SHIPPING_THRESHOLD - rawSubtotal;
 
   const handleApplyPromo = (e) => {
     e.preventDefault();
@@ -64,7 +69,7 @@ export default function CartDrawer({
                 <span>
                   {amountNeededForFreeShipping <= 0
                     ? '🎉 You unlocked Free Express Shipping!'
-                    : `Add $${amountNeededForFreeShipping.toFixed(2)} more for Free Shipping`}
+                    : `Add ${formatCurrency(amountNeededForFreeShipping, { decimals: true })} more for Free Shipping`}
                 </span>
                 <span>{progressPercent.toFixed(0)}%</span>
               </div>
@@ -100,12 +105,24 @@ export default function CartDrawer({
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-20 h-24 object-cover bg-surface-container-low border border-outline-variant/30"
+                    onClick={() => {
+                      onClose();
+                      onSelectProduct?.(item);
+                    }}
+                    className="w-20 h-24 object-cover bg-surface-container-low border border-outline-variant/30 cursor-pointer hover:opacity-85 transition-opacity"
                   />
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start">
-                        <h3 className="font-headline-sm text-base text-primary">{item.name}</h3>
+                        <h3
+                          onClick={() => {
+                            onClose();
+                            onSelectProduct?.(item);
+                          }}
+                          className="font-headline-sm text-base text-primary cursor-pointer hover:text-secondary transition-colors"
+                        >
+                          {item.name}
+                        </h3>
                         <button
                           onClick={() => removeItem(item.id)}
                           className="text-outline hover:text-error transition-colors p-1"
@@ -133,7 +150,7 @@ export default function CartDrawer({
                         </button>
                       </div>
                       <span className="font-label-caps text-sm text-primary font-bold">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        {formatCurrency(item.price * item.quantity, { decimals: true })}
                       </span>
                     </div>
                   </div>
@@ -153,7 +170,7 @@ export default function CartDrawer({
                   onChange={(e) => setGiftWrap(e.target.checked)}
                   className="rounded border-outline-variant text-primary focus:ring-primary"
                 />
-                <span>Add Signature Luxury Gift Wrapping (+$5.00)</span>
+                <span>Add Signature Luxury Gift Wrapping (+{formatCurrency(GIFT_WRAP_FEE, { decimals: true })})</span>
               </label>
 
               {/* Promo input */}
@@ -176,7 +193,7 @@ export default function CartDrawer({
               {discountPercent > 0 && (
                 <div className="flex justify-between text-xs text-secondary font-label-caps">
                   <span>Discount ({discountPercent}%)</span>
-                  <span>-${discountAmount.toFixed(2)}</span>
+                  <span>-{formatCurrency(discountAmount, { decimals: true })}</span>
                 </div>
               )}
 
@@ -185,7 +202,7 @@ export default function CartDrawer({
                   Total
                 </span>
                 <span className="font-headline-sm text-2xl text-primary font-medium">
-                  ${subtotal.toFixed(2)}
+                  {formatCurrency(subtotal, { decimals: true })}
                 </span>
               </div>
 

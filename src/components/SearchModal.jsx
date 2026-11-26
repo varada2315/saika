@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { formatCurrency } from '../utils/currency';
 
 export default function SearchModal({ isOpen, onClose, products, onSelectProduct }) {
   const [query, setQuery] = useState('');
@@ -8,7 +9,10 @@ export default function SearchModal({ isOpen, onClose, products, onSelectProduct
   const filteredProducts = query.trim() === ''
     ? []
     : products.filter(
-        p => p.name.toLowerCase().includes(query.toLowerCase()) || p.subtitle.toLowerCase().includes(query.toLowerCase())
+        (p) =>
+          p.name.toLowerCase().includes(query.toLowerCase()) ||
+          p.subtitle.toLowerCase().includes(query.toLowerCase()) ||
+          (p.category || '').toLowerCase().includes(query.toLowerCase())
       );
 
   return (
@@ -46,7 +50,7 @@ export default function SearchModal({ isOpen, onClose, products, onSelectProduct
                 Popular Searches
               </h3>
               <div className="flex flex-wrap gap-3">
-                {['Artisan Vase', 'Solid Gold', 'Washed Linen', 'Lounge Chair', 'Crockery'].map((term) => (
+                {['Artisan Vase', 'Essential Chain', 'Washed Linen', 'Lounge Chair', 'Crockery'].map((term) => (
                   <button
                     key={term}
                     onClick={() => setQuery(term)}
@@ -72,7 +76,7 @@ export default function SearchModal({ isOpen, onClose, products, onSelectProduct
                   <div>
                     <h4 className="font-headline-sm text-base text-primary">{p.name}</h4>
                     <p className="font-body-md text-xs text-on-surface-variant">{p.subtitle}</p>
-                    <span className="font-label-caps text-xs text-secondary mt-2 block">${p.price}</span>
+                    <span className="font-label-caps text-xs text-secondary mt-2 block">{formatCurrency(p.price)}</span>
                   </div>
                 </div>
               ))}

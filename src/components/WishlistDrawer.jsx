@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatCurrency } from '../utils/currency';
 
 export default function WishlistDrawer({
   isOpen,
@@ -7,6 +8,7 @@ export default function WishlistDrawer({
   onAddToCart,
   removeFromWishlist,
   setCurrentPage,
+  onSelectProduct,
 }) {
   if (!isOpen) return null;
 
@@ -57,12 +59,24 @@ export default function WishlistDrawer({
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-20 h-24 object-cover bg-surface-container-low border border-outline-variant/30"
+                    onClick={() => {
+                      onClose();
+                      onSelectProduct?.(item);
+                    }}
+                    className="w-20 h-24 object-cover bg-surface-container-low border border-outline-variant/30 cursor-pointer hover:opacity-85 transition-opacity"
                   />
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start">
-                        <h3 className="font-headline-sm text-base text-primary">{item.name}</h3>
+                        <h3
+                          onClick={() => {
+                            onClose();
+                            onSelectProduct?.(item);
+                          }}
+                          className="font-headline-sm text-base text-primary cursor-pointer hover:text-secondary transition-colors"
+                        >
+                          {item.name}
+                        </h3>
                         <button
                           onClick={() => removeFromWishlist(item.id)}
                           className="text-outline hover:text-error transition-colors p-1"
@@ -72,7 +86,7 @@ export default function WishlistDrawer({
                       </div>
                       <p className="font-body-md text-xs text-on-surface-variant mt-1">{item.subtitle}</p>
                       <span className="font-label-caps text-sm text-secondary font-bold mt-2 block">
-                        ${item.price}
+                        {formatCurrency(item.price)}
                       </span>
                     </div>
 

@@ -8,6 +8,7 @@ export default function HomePage({
   products,
   onQuickAdd,
   onAddToCart,
+  onSelectProduct,
   toggleWishlist,
   wishlist,
   showToast,
@@ -32,7 +33,7 @@ export default function HomePage({
     {
       title: "Modern Classicism.\nArtisanal Spirit.",
       tag: "Handcrafted Essentials",
-      subtitle: "Elevate daily routines with stoneware ceramics, solid 14k gold, and pure washed linen.",
+      subtitle: "Elevate daily routines with stoneware ceramics, brushed gold jewelry, and pure washed linen.",
       image: "/images/contact_banner.png",
       cta: "Discover More",
     },
@@ -51,7 +52,7 @@ export default function HomePage({
         
         <div className="relative z-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center py-16">
           <div className="md:col-span-8 md:col-start-3 text-center fade-in-up">
-            <span className="inline-block px-4 py-2 bg-[#D4C9B0] text-primary-container font-label-caps text-label-caps mb-8 tracking-widest uppercase shadow-sm">
+            <span className="inline-block px-4 py-2 bg-primary-container text-on-primary font-label-caps text-label-caps mb-8 tracking-widest uppercase shadow-ambient">
               {currentHero.tag}
             </span>
             <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-container mb-6 leading-tight whitespace-pre-line">
@@ -108,7 +109,7 @@ export default function HomePage({
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto md:h-[650px]">
             {/* Lifestyle & Home */}
             <div
-              onClick={() => setCurrentPage('shop')}
+              onClick={() => setCurrentPage('shop', 'Lifestyle')}
               className="md:col-span-8 md:row-span-2 relative group overflow-hidden bg-surface-container shadow-ambient cursor-pointer min-h-[350px]"
             >
               <img
@@ -130,7 +131,7 @@ export default function HomePage({
 
             {/* Fashion Accessories */}
             <div
-              onClick={() => setCurrentPage('shop')}
+              onClick={() => setCurrentPage('shop', 'Accessories')}
               className="md:col-span-4 md:row-span-1 relative group overflow-hidden bg-surface-container shadow-ambient cursor-pointer min-h-[300px]"
             >
               <img
@@ -149,7 +150,7 @@ export default function HomePage({
 
             {/* Premium Crockery */}
             <div
-              onClick={() => setCurrentPage('shop')}
+              onClick={() => setCurrentPage('shop', 'Crockery')}
               className="md:col-span-4 md:row-span-1 relative group overflow-hidden bg-surface-container shadow-ambient cursor-pointer min-h-[300px]"
             >
               <img
@@ -170,12 +171,17 @@ export default function HomePage({
       </section>
 
       {/* Interactive Shop The Room Hotspots */}
-      <ShopTheLook onAddToCart={onAddToCart} showToast={showToast} />
+      <ShopTheLook
+        onAddToCart={onAddToCart}
+        onSelectProduct={onSelectProduct}
+        showToast={showToast}
+      />
 
       {/* Trending Best Sellers Slider */}
       <BestSellersSlider
         products={products}
         onQuickAdd={onQuickAdd}
+        onSelectProduct={onSelectProduct}
         toggleWishlist={toggleWishlist}
         wishlist={wishlist}
         showToast={showToast}

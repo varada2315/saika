@@ -41,16 +41,21 @@ export default function Navbar({
     <nav
       id="main-nav"
       className={`w-full bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-300 ${
-        scrolled ? 'py-3.5 shadow-ambient' : 'py-5'
+        scrolled ? 'py-2.5 shadow-ambient' : 'py-3.5'
       }`}
     >
       <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
         {/* Brand Logo */}
         <button
           onClick={() => handleNavClick('home')}
-          className="font-display-lg text-headline-sm tracking-widest text-primary hover:opacity-80 transition-opacity uppercase text-left font-normal"
+          aria-label="The Saika Store Home"
+          className="inline-flex items-center text-primary hover:opacity-85 transition-opacity group"
         >
-          SAIKA
+          <img
+            src="/images/saika_logo.jpg"
+            alt="The Saika Store"
+            className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border border-outline-variant/30 shrink-0 transition-transform duration-300 group-hover:scale-105"
+          />
         </button>
 
         {/* Desktop Nav */}
